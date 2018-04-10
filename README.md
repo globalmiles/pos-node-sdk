@@ -241,18 +241,18 @@ var controller = lib.PaymentSystemsController;
 ### <a name="create_transaction_result"></a>![Method: ](https://apidocs.io/img/method.png ".PaymentSystemsController.createTransactionResult") createTransactionResult
 
 > After getting customer info by Get customer Info API and finished the shopping procedure in POS terminal, use this API to complete transaction.
+> 
+> You can try this API with configuring client parameters in Console Tab below. Test OAuthClientId is 552698b91cae424b9b3ddee14eea6faf564f1b5fb7764854b73b2763e0e68c66
+> and OAuthClientSecret is d0a8b00a3d754ea5a013465bcc23f6efa89e9dfb080a4f4eb460e3306653d92b
 
 
 ```javascript
-function createTransactionResult(accept, contentType, authorization, body, callback)
+function createTransactionResult(body, callback)
 ```
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| accept |  ``` Required ```  ``` DefaultValue ```  | It advertises which content type is able to understand. |
-| contentType |  ``` Required ```  ``` DefaultValue ```  | It tells the client what the content type of the returned. |
-| authorization |  ``` Required ```  | It includes OAuth2 token. |
 | body |  ``` Required ```  | The body of the request. |
 
 
@@ -261,12 +261,9 @@ function createTransactionResult(accept, contentType, authorization, body, callb
 
 ```javascript
 
-    var accept = 'Accept';
-    var contentType = 'Content-Type';
-    var authorization = 'Authorization';
     var body = new TransactionResultRequest({"key":"value"});
 
-    controller.createTransactionResult(accept, contentType, authorization, body, function(error, response, context) {
+    controller.createTransactionResult(body, function(error, response, context) {
 
     
     });
@@ -294,14 +291,12 @@ var controller = lib.AuthenticationController;
 
 
 ```javascript
-function createAuthentication(accept, contentType, body, callback)
+function createAuthentication(body, callback)
 ```
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| accept |  ``` Required ```  ``` DefaultValue ```  | It advertises which content type is able to understand. |
-| contentType |  ``` Required ```  ``` DefaultValue ```  | It tells the client what the content type of the returned. |
 | body |  ``` Required ```  | The body of the request. |
 
 
@@ -310,11 +305,9 @@ function createAuthentication(accept, contentType, body, callback)
 
 ```javascript
 
-    var accept = 'Accept';
-    var contentType = 'Content-Type';
     var body = new OAuthRequest({"key":"value"});
 
-    controller.createAuthentication(accept, contentType, body, function(error, response, context) {
+    controller.createAuthentication(body, function(error, response, context) {
 
     
     });
@@ -337,18 +330,18 @@ var controller = lib.CommonController;
 ### <a name="create_get_customer_info"></a>![Method: ](https://apidocs.io/img/method.png ".CommonController.createGetCustomerInfo") createGetCustomerInfo
 
 > This API will help you to retrieve customer's mil quantity and unique identifier value.Unique identifier value must be used by Transaction Result API in order to complete shopping.
+> 
+> You can try this API with configuring client parameters in Console Tab below. Test OAuthClientId is 552698b91cae424b9b3ddee14eea6faf564f1b5fb7764854b73b2763e0e68c66
+> and OAuthClientSecret is d0a8b00a3d754ea5a013465bcc23f6efa89e9dfb080a4f4eb460e3306653d92b
 
 
 ```javascript
-function createGetCustomerInfo(accept, contentType, authorization, body, callback)
+function createGetCustomerInfo(body, callback)
 ```
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| accept |  ``` Required ```  ``` DefaultValue ```  | It advertises which content type is able to understand. |
-| contentType |  ``` Required ```  ``` DefaultValue ```  | It tells the client what the content type of the returned. |
-| authorization |  ``` Required ```  | It includes OAuth2 token. |
 | body |  ``` Required ```  | The body of the request. |
 
 
@@ -357,12 +350,9 @@ function createGetCustomerInfo(accept, contentType, authorization, body, callbac
 
 ```javascript
 
-    var accept = 'Accept';
-    var contentType = 'Content-Type';
-    var authorization = 'Authorization';
     var body = new GetCustomerInfoRequest({"key":"value"});
 
-    controller.createGetCustomerInfo(accept, contentType, authorization, body, function(error, response, context) {
+    controller.createGetCustomerInfo(body, function(error, response, context) {
 
     
     });
@@ -385,19 +375,19 @@ var controller = lib.BonusPaymentsController;
 ### <a name="create_start_bonus_payment"></a>![Method: ](https://apidocs.io/img/method.png ".BonusPaymentsController.createStartBonusPayment") createStartBonusPayment
 
 > After getting customer info's and RecognitionID to start Payment with Miles Use this API.
-> After calling this API successfully OTP code send to cutomer GSM number. This OTP must be used with Complete API in order to complete sale.
+> After calling this API successfully OTP code send to customer GSM number. This OTP must be used with Complete API in order to complete sale.
+> 
+> You can try this API with configuring client parameters in Console Tab below. Test OAuthClientId is 552698b91cae424b9b3ddee14eea6faf564f1b5fb7764854b73b2763e0e68c66
+> and OAuthClientSecret is d0a8b00a3d754ea5a013465bcc23f6efa89e9dfb080a4f4eb460e3306653d92b
 
 
 ```javascript
-function createStartBonusPayment(accept, contentType, authorization, body, callback)
+function createStartBonusPayment(body, callback)
 ```
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| accept |  ``` Required ```  ``` DefaultValue ```  | It advertises which content type is able to understand. |
-| contentType |  ``` Required ```  ``` DefaultValue ```  | It tells the client what the content type of the returned. |
-| authorization |  ``` Required ```  | It includes OAuth2 token. |
 | body |  ``` Required ```  | The body of the request. |
 
 
@@ -406,12 +396,9 @@ function createStartBonusPayment(accept, contentType, authorization, body, callb
 
 ```javascript
 
-    var accept = 'Accept';
-    var contentType = 'Content-Type';
-    var authorization = 'Authorization';
     var body = new StartBonusPaymentRequest({"key":"value"});
 
-    controller.createStartBonusPayment(accept, contentType, authorization, body, function(error, response, context) {
+    controller.createStartBonusPayment(body, function(error, response, context) {
 
     
     });
@@ -421,19 +408,19 @@ function createStartBonusPayment(accept, contentType, authorization, body, callb
 
 ### <a name="create_complete_bonus_payment"></a>![Method: ](https://apidocs.io/img/method.png ".BonusPaymentsController.createCompleteBonusPayment") createCompleteBonusPayment
 
-> In order to finalise payment with Miles use this API.Use the OTP number  which is send to user GSM on the Request body.
+> In order to finalize payment with Miles use this API. Use the OTP number  which is send to user GSM on the Request body.
+> 
+> You can try this API with configuring client parameters in Console Tab below. Test OAuthClientId is 552698b91cae424b9b3ddee14eea6faf564f1b5fb7764854b73b2763e0e68c66
+> and OAuthClientSecret is d0a8b00a3d754ea5a013465bcc23f6efa89e9dfb080a4f4eb460e3306653d92b
 
 
 ```javascript
-function createCompleteBonusPayment(accept, contentType, authorization, body, callback)
+function createCompleteBonusPayment(body, callback)
 ```
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| accept |  ``` Required ```  ``` DefaultValue ```  | It advertises which content type is able to understand. |
-| contentType |  ``` Required ```  ``` DefaultValue ```  | It tells the client what the content type of the returned. |
-| authorization |  ``` Required ```  | It includes OAuth2 token. |
 | body |  ``` Required ```  | The body of the request. |
 
 
@@ -442,12 +429,9 @@ function createCompleteBonusPayment(accept, contentType, authorization, body, ca
 
 ```javascript
 
-    var accept = 'Accept';
-    var contentType = 'Content-Type';
-    var authorization = 'Authorization';
     var body = new CompleteBonusPaymentRequest({"key":"value"});
 
-    controller.createCompleteBonusPayment(accept, contentType, authorization, body, function(error, response, context) {
+    controller.createCompleteBonusPayment(body, function(error, response, context) {
 
     
     });
@@ -458,18 +442,18 @@ function createCompleteBonusPayment(accept, contentType, authorization, body, ca
 ### <a name="create_cancel_bonus_payment"></a>![Method: ](https://apidocs.io/img/method.png ".BonusPaymentsController.createCancelBonusPayment") createCancelBonusPayment
 
 > In order to cancel payment with miles you can use this API. It allows to cancel payment only related GSM and terminal ID numbers.
+> 
+> You can try this API with configuring client parameters in Console Tab below. Test OAuthClientId is 552698b91cae424b9b3ddee14eea6faf564f1b5fb7764854b73b2763e0e68c66
+> and OAuthClientSecret is d0a8b00a3d754ea5a013465bcc23f6efa89e9dfb080a4f4eb460e3306653d92b
 
 
 ```javascript
-function createCancelBonusPayment(accept, contentType, authorization, body, callback)
+function createCancelBonusPayment(body, callback)
 ```
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| accept |  ``` Required ```  ``` DefaultValue ```  | It advertises which content type is able to understand. |
-| contentType |  ``` Required ```  ``` DefaultValue ```  | It tells the client what the content type of the returned. |
-| authorization |  ``` Required ```  | It includes OAuth2 token. |
 | body |  ``` Required ```  | The body of the request. |
 
 
@@ -478,12 +462,9 @@ function createCancelBonusPayment(accept, contentType, authorization, body, call
 
 ```javascript
 
-    var accept = 'Accept';
-    var contentType = 'Content-Type';
-    var authorization = 'Authorization';
     var body = new CancelBonusPaymentRequest({"key":"value"});
 
-    controller.createCancelBonusPayment(accept, contentType, authorization, body, function(error, response, context) {
+    controller.createCancelBonusPayment(body, function(error, response, context) {
 
     
     });
@@ -494,18 +475,18 @@ function createCancelBonusPayment(accept, contentType, authorization, body, call
 ### <a name="create_get_bonus_provisions"></a>![Method: ](https://apidocs.io/img/method.png ".BonusPaymentsController.createGetBonusProvisions") createGetBonusProvisions
 
 > Before cancelling the payment with Miles this API is used to list the related sale.
+> 
+> You can try this API with configuring client parameters in Console Tab below. Test OAuthClientId is 552698b91cae424b9b3ddee14eea6faf564f1b5fb7764854b73b2763e0e68c66
+> and OAuthClientSecret is d0a8b00a3d754ea5a013465bcc23f6efa89e9dfb080a4f4eb460e3306653d92b
 
 
 ```javascript
-function createGetBonusProvisions(accept, contentType, authorization, body, callback)
+function createGetBonusProvisions(body, callback)
 ```
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| accept |  ``` Required ```  ``` DefaultValue ```  | It advertises which content type is able to understand. |
-| contentType |  ``` Required ```  ``` DefaultValue ```  | It tells the client what the content type of the returned. |
-| authorization |  ``` Required ```  | It includes OAuth2 token. |
 | body |  ``` Required ```  | The body of the request. |
 
 
@@ -514,12 +495,9 @@ function createGetBonusProvisions(accept, contentType, authorization, body, call
 
 ```javascript
 
-    var accept = 'Accept';
-    var contentType = 'Content-Type';
-    var authorization = 'Authorization';
     var body = new GetBonusProvisionsRequest({"key":"value"});
 
-    controller.createGetBonusProvisions(accept, contentType, authorization, body, function(error, response, context) {
+    controller.createGetBonusProvisions(body, function(error, response, context) {
 
     
     });
@@ -531,4 +509,3 @@ function createGetBonusProvisions(accept, contentType, authorization, body, call
 
 
 
-# pos-node-sdk
