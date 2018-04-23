@@ -223,24 +223,24 @@ if (oAuthManager.isTokenSet()) {
 
 ## <a name="list_of_controllers"></a>List of Controllers
 
-* [PaymentSystemsController](#payment_systems_controller)
+* [EarnMilesController](#earn_miles_controller)
 * [AuthenticationController](#authentication_controller)
 * [CommonController](#common_controller)
-* [BonusPaymentsController](#bonus_payments_controller)
+* [PayWithMilesController](#pay_with_miles_controller)
 
-## <a name="payment_systems_controller"></a>![Class: ](https://apidocs.io/img/class.png ".PaymentSystemsController") PaymentSystemsController
+## <a name="earn_miles_controller"></a>![Class: ](https://apidocs.io/img/class.png ".EarnMilesController") EarnMilesController
 
 ### Get singleton instance
 
-The singleton instance of the ``` PaymentSystemsController ``` class can be accessed from the API Client.
+The singleton instance of the ``` EarnMilesController ``` class can be accessed from the API Client.
 
 ```javascript
-var controller = lib.PaymentSystemsController;
+var controller = lib.EarnMilesController;
 ```
 
-### <a name="create_transaction_result"></a>![Method: ](https://apidocs.io/img/method.png ".PaymentSystemsController.createTransactionResult") createTransactionResult
+### <a name="create_transaction_result"></a>![Method: ](https://apidocs.io/img/method.png ".EarnMilesController.createTransactionResult") createTransactionResult
 
-> After getting customer info by Get customer Info API and finished the shopping procedure in POS terminal, use this API to complete transaction.
+> After getting customer info by Get Customer Info endpoint and finished the shopping procedure in POS terminal, use this endpoint to complete transaction.
 > 
 > You can try this API with configuring client parameters in Console Tab below. Test OAuthClientId is 552698b91cae424b9b3ddee14eea6faf564f1b5fb7764854b73b2763e0e68c66
 > and OAuthClientSecret is d0a8b00a3d754ea5a013465bcc23f6efa89e9dfb080a4f4eb460e3306653d92b
@@ -329,7 +329,7 @@ var controller = lib.CommonController;
 
 ### <a name="create_get_customer_info"></a>![Method: ](https://apidocs.io/img/method.png ".CommonController.createGetCustomerInfo") createGetCustomerInfo
 
-> This API will help you to retrieve customer's mil quantity and unique identifier value.Unique identifier value must be used by Transaction Result API in order to complete shopping.
+> This API will help you to get customer's mil quantity and unique identifier value. Unique identifier value must be used by Transaction Result API in order to complete shopping.
 > 
 > You can try this API with configuring client parameters in Console Tab below. Test OAuthClientId is 552698b91cae424b9b3ddee14eea6faf564f1b5fb7764854b73b2763e0e68c66
 > and OAuthClientSecret is d0a8b00a3d754ea5a013465bcc23f6efa89e9dfb080a4f4eb460e3306653d92b
@@ -362,17 +362,17 @@ function createGetCustomerInfo(body, callback)
 
 [Back to List of Controllers](#list_of_controllers)
 
-## <a name="bonus_payments_controller"></a>![Class: ](https://apidocs.io/img/class.png ".BonusPaymentsController") BonusPaymentsController
+## <a name="pay_with_miles_controller"></a>![Class: ](https://apidocs.io/img/class.png ".PayWithMilesController") PayWithMilesController
 
 ### Get singleton instance
 
-The singleton instance of the ``` BonusPaymentsController ``` class can be accessed from the API Client.
+The singleton instance of the ``` PayWithMilesController ``` class can be accessed from the API Client.
 
 ```javascript
-var controller = lib.BonusPaymentsController;
+var controller = lib.PayWithMilesController;
 ```
 
-### <a name="create_start_bonus_payment"></a>![Method: ](https://apidocs.io/img/method.png ".BonusPaymentsController.createStartBonusPayment") createStartBonusPayment
+### <a name="create_start_mile_payment"></a>![Method: ](https://apidocs.io/img/method.png ".PayWithMilesController.createStartMilePayment") createStartMilePayment
 
 > After getting customer info's and RecognitionID to start Payment with Miles Use this API.
 > After calling this API successfully OTP code send to customer GSM number. This OTP must be used with Complete API in order to complete sale.
@@ -382,7 +382,7 @@ var controller = lib.BonusPaymentsController;
 
 
 ```javascript
-function createStartBonusPayment(body, callback)
+function createStartMilePayment(body, callback)
 ```
 #### Parameters
 
@@ -396,9 +396,9 @@ function createStartBonusPayment(body, callback)
 
 ```javascript
 
-    var body = new StartBonusPaymentRequest({"key":"value"});
+    var body = new StartMilePaymentRequest({"key":"value"});
 
-    controller.createStartBonusPayment(body, function(error, response, context) {
+    controller.createStartMilePayment(body, function(error, response, context) {
 
     
     });
@@ -406,7 +406,7 @@ function createStartBonusPayment(body, callback)
 
 
 
-### <a name="create_complete_bonus_payment"></a>![Method: ](https://apidocs.io/img/method.png ".BonusPaymentsController.createCompleteBonusPayment") createCompleteBonusPayment
+### <a name="create_complete_mile_payment"></a>![Method: ](https://apidocs.io/img/method.png ".PayWithMilesController.createCompleteMilePayment") createCompleteMilePayment
 
 > In order to finalize payment with Miles use this API. Use the OTP number  which is send to user GSM on the Request body.
 > 
@@ -415,7 +415,7 @@ function createStartBonusPayment(body, callback)
 
 
 ```javascript
-function createCompleteBonusPayment(body, callback)
+function createCompleteMilePayment(body, callback)
 ```
 #### Parameters
 
@@ -429,9 +429,9 @@ function createCompleteBonusPayment(body, callback)
 
 ```javascript
 
-    var body = new CompleteBonusPaymentRequest({"key":"value"});
+    var body = new CompleteMilePaymentRequest({"key":"value"});
 
-    controller.createCompleteBonusPayment(body, function(error, response, context) {
+    controller.createCompleteMilePayment(body, function(error, response, context) {
 
     
     });
@@ -439,7 +439,7 @@ function createCompleteBonusPayment(body, callback)
 
 
 
-### <a name="create_cancel_bonus_payment"></a>![Method: ](https://apidocs.io/img/method.png ".BonusPaymentsController.createCancelBonusPayment") createCancelBonusPayment
+### <a name="create_cancel_mile_payment"></a>![Method: ](https://apidocs.io/img/method.png ".PayWithMilesController.createCancelMilePayment") createCancelMilePayment
 
 > In order to cancel payment with miles you can use this API. It allows to cancel payment only related GSM and terminal ID numbers.
 > 
@@ -448,7 +448,7 @@ function createCompleteBonusPayment(body, callback)
 
 
 ```javascript
-function createCancelBonusPayment(body, callback)
+function createCancelMilePayment(body, callback)
 ```
 #### Parameters
 
@@ -462,9 +462,9 @@ function createCancelBonusPayment(body, callback)
 
 ```javascript
 
-    var body = new CancelBonusPaymentRequest({"key":"value"});
+    var body = new CancelMilePaymentRequest({"key":"value"});
 
-    controller.createCancelBonusPayment(body, function(error, response, context) {
+    controller.createCancelMilePayment(body, function(error, response, context) {
 
     
     });
@@ -472,7 +472,7 @@ function createCancelBonusPayment(body, callback)
 
 
 
-### <a name="create_get_bonus_provisions"></a>![Method: ](https://apidocs.io/img/method.png ".BonusPaymentsController.createGetBonusProvisions") createGetBonusProvisions
+### <a name="create_get_mile_provisions"></a>![Method: ](https://apidocs.io/img/method.png ".PayWithMilesController.createGetMileProvisions") createGetMileProvisions
 
 > Before cancelling the payment with Miles this API is used to list the related sale.
 > 
@@ -481,7 +481,7 @@ function createCancelBonusPayment(body, callback)
 
 
 ```javascript
-function createGetBonusProvisions(body, callback)
+function createGetMileProvisions(body, callback)
 ```
 #### Parameters
 
@@ -495,9 +495,9 @@ function createGetBonusProvisions(body, callback)
 
 ```javascript
 
-    var body = new GetBonusProvisionsRequest({"key":"value"});
+    var body = new GetMileProvisionsRequest({"key":"value"});
 
-    controller.createGetBonusProvisions(body, function(error, response, context) {
+    controller.createGetMileProvisions(body, function(error, response, context) {
 
     
     });
