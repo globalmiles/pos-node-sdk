@@ -1,26 +1,25 @@
 # Getting started
 
-By integrating GlobalMiles POS APIs, Merchants can offer to the GlobalMiles users  earn mile and shop with their miles in their in-stores.
+By integrating Global Miles POS APIs, Merchants can offer to the Global Miles users  earn mile and shop with their miles in their in-stores.
 
 Work Flow:
 Common to dos both for Earn/Pay with miles. 
 
-We will provide Client ID/ Secret Key. Ask us Please.
-Before using any APIS of us, you need to authorise by using your Client ID / Secret Key  to get access_token.  
-During shopping cashier ask GlobalMiles user  for  GSM No or QR code and enter into POS. 
-POS software Post this info to GlobalMiles Server by using the API  GetCustomerInfo and get uniq identifier in order to  use at TransactionResult API  if you follow EarnMiles work Flow or  use at  StartBonusPayment API if you follow Use your Miles work flow. 
+We will provide Client ID/ Secret Key.
+Before using any endpoints of us, you need to authorize by using your Client ID / Client Secret to get access_token. 
+During shopping cashier ask GlobalMiles user for GSM / FFP ID / Code or EMail and enter into POS. 
+POS software Post this info to Global Miles Server by using the endpoint GetCustomerInfo and get unique identifier in order to use at TransactionResult endpoint if you follow EarnMiles work Flow or use at  StartMilePayment endpoint if you follow use your Miles work flow. 
 
 Earn Mile: 
-After Getting Customer Info, Cashier will finalise the payment, as the payment done at POS post TransactionResult .
+After Getting Customer Info, Cashier will finalize the payment, as the payment done at POS post TransactionResult.
 
-Use Your Mile(Bonus):
+Pay with Miles:
+After Getting Customer Info, as all the items added to basket, Cashier ask for the payment method as the Global Miles selected as payment method, Pos software Post this info Global Miles Server by using the endpoint StartMilePayment.
 
-After Getting Customer Info, As all the items added to basket, Cashier ask for the payment method as the Globalmiles selected as payment method, Pos software Post this info GlobalMiles Server by using the API  StartBonusPayment .
-
-An OTP code is send to the Customer mobile phone. The Customer/cashier enter this OTP into POS and this info Post to Globalmiles server by the BonusComplete API.
+An OTP code is send to the Customer mobile phone. The Customer/cashier enter this OTP into POS and this info Post to Global Miles server by the CompleteMilePayment endpoint.
 
 Cancel Payment with Miles:
-By using Get Bonus Provision & CancelBonusPayment APIs  it allows to  list related sale on the POS and Cancel it .
+By using Get Mile Provision & CancelMilePayment endpoints  it allows to  list related sale on the POS and Cancel it .
 
 ## How to Build
 
@@ -223,31 +222,102 @@ if (oAuthManager.isTokenSet()) {
 
 ## <a name="list_of_controllers"></a>List of Controllers
 
-* [EarnMilesController](#earn_miles_controller)
-* [AuthenticationController](#authentication_controller)
-* [CommonController](#common_controller)
 * [PayWithMilesController](#pay_with_miles_controller)
+* [AuthenticationController](#authentication_controller)
+* [EarnMilesController](#earn_miles_controller)
+* [CommonController](#common_controller)
 
-## <a name="earn_miles_controller"></a>![Class: ](https://apidocs.io/img/class.png ".EarnMilesController") EarnMilesController
+## <a name="pay_with_miles_controller"></a>![Class: ](https://apidocs.io/img/class.png ".PayWithMilesController") PayWithMilesController
 
 ### Get singleton instance
 
-The singleton instance of the ``` EarnMilesController ``` class can be accessed from the API Client.
+The singleton instance of the ``` PayWithMilesController ``` class can be accessed from the API Client.
 
 ```javascript
-var controller = lib.EarnMilesController;
+var controller = lib.PayWithMilesController;
 ```
 
-### <a name="create_transaction_result"></a>![Method: ](https://apidocs.io/img/method.png ".EarnMilesController.createTransactionResult") createTransactionResult
+### <a name="delete_cancel_mile_payment"></a>![Method: ](https://apidocs.io/img/method.png ".PayWithMilesController.deleteCancelMilePayment") deleteCancelMilePayment
 
-> After getting customer info by Get Customer Info endpoint and finished the shopping procedure in POS terminal, use this endpoint to complete transaction.
+> In order to cancel payment with miles you can use this endpoint. It allows to cancel payment only related GSM and terminal ID numbers.
 > 
-> You can try this API with configuring client parameters in Console Tab below. Test OAuthClientId is 552698b91cae424b9b3ddee14eea6faf564f1b5fb7764854b73b2763e0e68c66
-> and OAuthClientSecret is d0a8b00a3d754ea5a013465bcc23f6efa89e9dfb080a4f4eb460e3306653d92b
+> You can try this endpoint with configuring client parameters in Console Tab below. Test OAuthClientId is b30359c21700fd6f2b91154adcb7b37bab3e7e0a33e22682e5dd149d7a6ac4df
+> and OAuthClientSecret is 4bc4335faad41d6a23cd059e495005f00496a64e34e6187b1d72695a8debd28c
 
 
 ```javascript
-function createTransactionResult(body, callback)
+function deleteCancelMilePayment(milesPaymentProvisionId, body, callback)
+```
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| milesPaymentProvisionId |  ``` Required ```  | Provision ID. |
+| body |  ``` Required ```  | The body of the request. |
+
+
+
+#### Example Usage
+
+```javascript
+
+    var milesPaymentProvisionId = 236;
+    var body = new CancelMilePaymentRequest({"key":"value"});
+
+    controller.deleteCancelMilePayment(milesPaymentProvisionId, body, function(error, response, context) {
+
+    
+    });
+```
+
+
+
+### <a name="update_complete_mile_payment"></a>![Method: ](https://apidocs.io/img/method.png ".PayWithMilesController.updateCompleteMilePayment") updateCompleteMilePayment
+
+> In order to finalize payment with miles use this endpoint. Use the OTP number which is send to user GSM on the Request body.
+> 
+> You can try this endpoint with configuring client parameters in Console Tab below. Test OAuthClientId is b30359c21700fd6f2b91154adcb7b37bab3e7e0a33e22682e5dd149d7a6ac4df
+> and OAuthClientSecret is 4bc4335faad41d6a23cd059e495005f00496a64e34e6187b1d72695a8debd28c
+
+
+```javascript
+function updateCompleteMilePayment(milesPaymentProvisionId, body, callback)
+```
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| milesPaymentProvisionId |  ``` Required ```  | Provision ID. |
+| body |  ``` Required ```  | The body of the request. |
+
+
+
+#### Example Usage
+
+```javascript
+
+    var milesPaymentProvisionId = 236;
+    var body = new CompleteMilePaymentRequest({"key":"value"});
+
+    controller.updateCompleteMilePayment(milesPaymentProvisionId, body, function(error, response, context) {
+
+    
+    });
+```
+
+
+
+### <a name="create_start_mile_payment"></a>![Method: ](https://apidocs.io/img/method.png ".PayWithMilesController.createStartMilePayment") createStartMilePayment
+
+> After getting customer info's and RecognitionID to start Payment with Miles Use this endpoint.
+> After calling this endpoint successfully OTP code send to customer GSM number. This OTP must be used with Complete endpoint in order to complete payment.
+> 
+> You can try this endpoint with configuring client parameters in Console Tab below. Test OAuthClientId is b30359c21700fd6f2b91154adcb7b37bab3e7e0a33e22682e5dd149d7a6ac4df
+> and OAuthClientSecret is 4bc4335faad41d6a23cd059e495005f00496a64e34e6187b1d72695a8debd28c
+
+
+```javascript
+function createStartMilePayment(body, callback)
 ```
 #### Parameters
 
@@ -261,9 +331,46 @@ function createTransactionResult(body, callback)
 
 ```javascript
 
-    var body = new TransactionResultRequest({"key":"value"});
+    var body = new StartMilePaymentRequest({"key":"value"});
 
-    controller.createTransactionResult(body, function(error, response, context) {
+    controller.createStartMilePayment(body, function(error, response, context) {
+
+    
+    });
+```
+
+
+
+### <a name="get_mile_provisions"></a>![Method: ](https://apidocs.io/img/method.png ".PayWithMilesController.getMileProvisions") getMileProvisions
+
+> Before cancelling the payment with miles this endpoint is used to list the related sale.
+> 
+> You can try this endpoint with configuring client parameters in Console Tab below. Test OAuthClientId is b30359c21700fd6f2b91154adcb7b37bab3e7e0a33e22682e5dd149d7a6ac4df
+> and OAuthClientSecret is 4bc4335faad41d6a23cd059e495005f00496a64e34e6187b1d72695a8debd28c
+
+
+```javascript
+function getMileProvisions(readCode, readCodeType, terminalId, callback)
+```
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| readCode |  ``` Required ```  | Customer Identification Method; GSM, FFP ID, CODE or EMAIL. |
+| readCodeType |  ``` Required ```  | 1: GSM, 2: FFP ID, 3: CODE, 4: EMAIL |
+| terminalId |  ``` Required ```  | Terminal ID. |
+
+
+
+#### Example Usage
+
+```javascript
+
+    var readCode = read_code;
+    var readCodeType = read_code_type;
+    var terminalId = terminal_id;
+
+    controller.getMileProvisions(readCode, readCodeType, terminalId, function(error, response, context) {
 
     
     });
@@ -317,6 +424,51 @@ function createAuthentication(body, callback)
 
 [Back to List of Controllers](#list_of_controllers)
 
+## <a name="earn_miles_controller"></a>![Class: ](https://apidocs.io/img/class.png ".EarnMilesController") EarnMilesController
+
+### Get singleton instance
+
+The singleton instance of the ``` EarnMilesController ``` class can be accessed from the API Client.
+
+```javascript
+var controller = lib.EarnMilesController;
+```
+
+### <a name="create_transaction_result"></a>![Method: ](https://apidocs.io/img/method.png ".EarnMilesController.createTransactionResult") createTransactionResult
+
+> After getting customer info by Get Customer Info endpoint and finished the shopping procedure in POS terminal, use this endpoint to complete transaction.
+> 
+> You can try this endpoint with configuring client parameters in Console Tab below. Test OAuthClientId is b30359c21700fd6f2b91154adcb7b37bab3e7e0a33e22682e5dd149d7a6ac4df
+> and OAuthClientSecret is 4bc4335faad41d6a23cd059e495005f00496a64e34e6187b1d72695a8debd28c
+
+
+```javascript
+function createTransactionResult(body, callback)
+```
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| body |  ``` Required ```  | The body of the request. |
+
+
+
+#### Example Usage
+
+```javascript
+
+    var body = new TransactionResultRequest({"key":"value"});
+
+    controller.createTransactionResult(body, function(error, response, context) {
+
+    
+    });
+```
+
+
+
+[Back to List of Controllers](#list_of_controllers)
+
 ## <a name="common_controller"></a>![Class: ](https://apidocs.io/img/class.png ".CommonController") CommonController
 
 ### Get singleton instance
@@ -327,22 +479,22 @@ The singleton instance of the ``` CommonController ``` class can be accessed fro
 var controller = lib.CommonController;
 ```
 
-### <a name="create_get_customer_info"></a>![Method: ](https://apidocs.io/img/method.png ".CommonController.createGetCustomerInfo") createGetCustomerInfo
+### <a name="get_terminal_info"></a>![Method: ](https://apidocs.io/img/method.png ".CommonController.getTerminalInfo") getTerminalInfo
 
-> This API will help you to get customer's mil quantity and unique identifier value. Unique identifier value must be used by Transaction Result API in order to complete shopping.
+> This endpoint will help you to get terminal settings in order to use internal operations.
 > 
-> You can try this API with configuring client parameters in Console Tab below. Test OAuthClientId is 552698b91cae424b9b3ddee14eea6faf564f1b5fb7764854b73b2763e0e68c66
-> and OAuthClientSecret is d0a8b00a3d754ea5a013465bcc23f6efa89e9dfb080a4f4eb460e3306653d92b
+> You can try this endpoint with configuring client parameters in Console Tab below. Test OAuthClientId is b30359c21700fd6f2b91154adcb7b37bab3e7e0a33e22682e5dd149d7a6ac4df
+> and OAuthClientSecret is 4bc4335faad41d6a23cd059e495005f00496a64e34e6187b1d72695a8debd28c
 
 
 ```javascript
-function createGetCustomerInfo(body, callback)
+function getTerminalInfo(terminalId, callback)
 ```
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| body |  ``` Required ```  | The body of the request. |
+| terminalId |  ``` Required ```  | Terminal ID. |
 
 
 
@@ -350,9 +502,9 @@ function createGetCustomerInfo(body, callback)
 
 ```javascript
 
-    var body = new GetCustomerInfoRequest({"key":"value"});
+    var terminalId = terminal_id;
 
-    controller.createGetCustomerInfo(body, function(error, response, context) {
+    controller.getTerminalInfo(terminalId, function(error, response, context) {
 
     
     });
@@ -360,35 +512,31 @@ function createGetCustomerInfo(body, callback)
 
 
 
-[Back to List of Controllers](#list_of_controllers)
+### <a name="get_customer_info"></a>![Method: ](https://apidocs.io/img/method.png ".CommonController.getCustomerInfo") getCustomerInfo
 
-## <a name="pay_with_miles_controller"></a>![Class: ](https://apidocs.io/img/class.png ".PayWithMilesController") PayWithMilesController
-
-### Get singleton instance
-
-The singleton instance of the ``` PayWithMilesController ``` class can be accessed from the API Client.
-
-```javascript
-var controller = lib.PayWithMilesController;
-```
-
-### <a name="create_start_mile_payment"></a>![Method: ](https://apidocs.io/img/method.png ".PayWithMilesController.createStartMilePayment") createStartMilePayment
-
-> After getting customer info's and RecognitionID to start Payment with Miles Use this API.
-> After calling this API successfully OTP code send to customer GSM number. This OTP must be used with Complete API in order to complete sale.
+> This endpoint will help you to get customer's miles amount as a currency and unique identifier value. Unique identifier value must be used by Transaction Result endpint in order to complete shopping.
 > 
-> You can try this API with configuring client parameters in Console Tab below. Test OAuthClientId is 552698b91cae424b9b3ddee14eea6faf564f1b5fb7764854b73b2763e0e68c66
-> and OAuthClientSecret is d0a8b00a3d754ea5a013465bcc23f6efa89e9dfb080a4f4eb460e3306653d92b
+> You can try this API with configuring client parameters in Console Tab below. Test OAuthClientId is b30359c21700fd6f2b91154adcb7b37bab3e7e0a33e22682e5dd149d7a6ac4df
+> and OAuthClientSecret is 4bc4335faad41d6a23cd059e495005f00496a64e34e6187b1d72695a8debd28c
+> You can try this API with configuring client parameters in Console Tab below. Test OAuthClientId is b30359c21700fd6f2b91154adcb7b37bab3e7e0a33e22682e5dd149d7a6ac4df
+> and OAuthClientSecret is 4bc4335faad41d6a23cd059e495005f00496a64e34e6187b1d72695a8debd28c
 
 
 ```javascript
-function createStartMilePayment(body, callback)
+function getCustomerInfo(readCode, readCodeType, totalAmount, totalVatAmount, currency, partnerId, branchId, terminalId, callback)
 ```
 #### Parameters
 
 | Parameter | Tags | Description |
 |-----------|------|-------------|
-| body |  ``` Required ```  | The body of the request. |
+| readCode |  ``` Required ```  | Customer Identification Method; GSM, FFP ID, CODE or EMAIL |
+| readCodeType |  ``` Required ```  | 1: GSM, 2: FFP ID, 3: CODE, 4: EMAIL |
+| totalAmount |  ``` Required ```  | Total receipt amount. |
+| totalVatAmount |  ``` Required ```  | Total tax value. |
+| currency |  ``` Required ```  | ISO-4217 3-letter currency code. |
+| partnerId |  ``` Required ```  | Partner ID. |
+| branchId |  ``` Required ```  | Branch ID. |
+| terminalId |  ``` Required ```  | Terminal ID. |
 
 
 
@@ -396,9 +544,16 @@ function createStartMilePayment(body, callback)
 
 ```javascript
 
-    var body = new StartMilePaymentRequest({"key":"value"});
+    var readCode = read_code;
+    var readCodeType = read_code_type;
+    var totalAmount = 236.314829905198;
+    var totalVatAmount = 236.314829905198;
+    var currency = 'currency';
+    var partnerId = 236;
+    var branchId = 236;
+    var terminalId = terminal_id;
 
-    controller.createStartMilePayment(body, function(error, response, context) {
+    controller.getCustomerInfo(readCode, readCodeType, totalAmount, totalVatAmount, currency, partnerId, branchId, terminalId, function(error, response, context) {
 
     
     });
@@ -406,16 +561,18 @@ function createStartMilePayment(body, callback)
 
 
 
-### <a name="create_complete_mile_payment"></a>![Method: ](https://apidocs.io/img/method.png ".PayWithMilesController.createCompleteMilePayment") createCompleteMilePayment
+### <a name="upload_receipt_pictures"></a>![Method: ](https://apidocs.io/img/method.png ".CommonController.uploadReceiptPictures") uploadReceiptPictures
 
-> In order to finalize payment with Miles use this API. Use the OTP number  which is send to user GSM on the Request body.
+> This endpoint will help you to upload receipt pictures which is related with a recognition ID and a transaction result.
 > 
-> You can try this API with configuring client parameters in Console Tab below. Test OAuthClientId is 552698b91cae424b9b3ddee14eea6faf564f1b5fb7764854b73b2763e0e68c66
-> and OAuthClientSecret is d0a8b00a3d754ea5a013465bcc23f6efa89e9dfb080a4f4eb460e3306653d92b
+> You can try this endoint with configuring client parameters in Console Tab below. Test OAuthClientId is b30359c21700fd6f2b91154adcb7b37bab3e7e0a33e22682e5dd149d7a6ac4df
+> and OAuthClientSecret is 4bc4335faad41d6a23cd059e495005f00496a64e34e6187b1d72695a8debd28c
+> You can try this API with configuring client parameters in Console Tab below. Test OAuthClientId is b30359c21700fd6f2b91154adcb7b37bab3e7e0a33e22682e5dd149d7a6ac4df
+> and OAuthClientSecret is 4bc4335faad41d6a23cd059e495005f00496a64e34e6187b1d72695a8debd28c
 
 
 ```javascript
-function createCompleteMilePayment(body, callback)
+function uploadReceiptPictures(body, callback)
 ```
 #### Parameters
 
@@ -429,75 +586,9 @@ function createCompleteMilePayment(body, callback)
 
 ```javascript
 
-    var body = new CompleteMilePaymentRequest({"key":"value"});
+    var body = new ReceiptPictureRequest({"key":"value"});
 
-    controller.createCompleteMilePayment(body, function(error, response, context) {
-
-    
-    });
-```
-
-
-
-### <a name="create_cancel_mile_payment"></a>![Method: ](https://apidocs.io/img/method.png ".PayWithMilesController.createCancelMilePayment") createCancelMilePayment
-
-> In order to cancel payment with miles you can use this API. It allows to cancel payment only related GSM and terminal ID numbers.
-> 
-> You can try this API with configuring client parameters in Console Tab below. Test OAuthClientId is 552698b91cae424b9b3ddee14eea6faf564f1b5fb7764854b73b2763e0e68c66
-> and OAuthClientSecret is d0a8b00a3d754ea5a013465bcc23f6efa89e9dfb080a4f4eb460e3306653d92b
-
-
-```javascript
-function createCancelMilePayment(body, callback)
-```
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| body |  ``` Required ```  | The body of the request. |
-
-
-
-#### Example Usage
-
-```javascript
-
-    var body = new CancelMilePaymentRequest({"key":"value"});
-
-    controller.createCancelMilePayment(body, function(error, response, context) {
-
-    
-    });
-```
-
-
-
-### <a name="create_get_mile_provisions"></a>![Method: ](https://apidocs.io/img/method.png ".PayWithMilesController.createGetMileProvisions") createGetMileProvisions
-
-> Before cancelling the payment with Miles this API is used to list the related sale.
-> 
-> You can try this API with configuring client parameters in Console Tab below. Test OAuthClientId is 552698b91cae424b9b3ddee14eea6faf564f1b5fb7764854b73b2763e0e68c66
-> and OAuthClientSecret is d0a8b00a3d754ea5a013465bcc23f6efa89e9dfb080a4f4eb460e3306653d92b
-
-
-```javascript
-function createGetMileProvisions(body, callback)
-```
-#### Parameters
-
-| Parameter | Tags | Description |
-|-----------|------|-------------|
-| body |  ``` Required ```  | The body of the request. |
-
-
-
-#### Example Usage
-
-```javascript
-
-    var body = new GetMileProvisionsRequest({"key":"value"});
-
-    controller.createGetMileProvisions(body, function(error, response, context) {
+    controller.uploadReceiptPictures(body, function(error, response, context) {
 
     
     });
