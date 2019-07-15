@@ -261,7 +261,7 @@ function deleteCancelMilePayment(milesPaymentProvisionId, body, callback)
 
 ```javascript
 
-    var milesPaymentProvisionId = 236;
+    var milesPaymentProvisionId = 70;
     var body = new CancelMilePaymentRequest({"key":"value"});
 
     controller.deleteCancelMilePayment(milesPaymentProvisionId, body, function(error, response, context) {
@@ -296,7 +296,7 @@ function updateCompleteMilePayment(milesPaymentProvisionId, body, callback)
 
 ```javascript
 
-    var milesPaymentProvisionId = 236;
+    var milesPaymentProvisionId = 70;
     var body = new CompleteMilePaymentRequest({"key":"value"});
 
     controller.updateCompleteMilePayment(milesPaymentProvisionId, body, function(error, response, context) {
@@ -546,11 +546,11 @@ function getCustomerInfo(readCode, readCodeType, totalAmount, totalVatAmount, cu
 
     var readCode = read_code;
     var readCodeType = read_code_type;
-    var totalAmount = 236.314829905198;
-    var totalVatAmount = 236.314829905198;
+    var totalAmount = 70.1752819983173;
+    var totalVatAmount = 70.1752819983173;
     var currency = 'currency';
-    var partnerId = 236;
-    var branchId = 236;
+    var partnerId = 70;
+    var branchId = 70;
     var terminalId = terminal_id;
 
     controller.getCustomerInfo(readCode, readCodeType, totalAmount, totalVatAmount, currency, partnerId, branchId, terminalId, function(error, response, context) {
